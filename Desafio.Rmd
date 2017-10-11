@@ -1,0 +1,66 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+
+#Quanto de cada produto venderei nos próximos 3 meses?
+
+# pacotes
+library(ggplot2)
+
+
+#load data
+```{r}
+sales <- read.csv("./desafio.csv/desafio.csv")
+```
+
+
+# Análise exploratória dos dados
+
+
+```{r}
+str(sales)
+```
+
+
+## Sazonalidade de pedidos de produtos:
+```{r}
+qplot(capture_date, category, data = sales, color = process_status)
+```
+
+
+## verificação de dados ausentes:
+```{r}
+sum(is.na(sales) == TRUE)
+```
+
+
+
+
+# a) sepração em grupos de produtos, usando agrupamento não supervisionado.
+
+```{python}
+
+```
+
+
+
+library(ggplot2); library(caret)
+
+inTrain <- createDataPartition(y=sales$category, p=0.7, list=F)
+training <- sales[inTrain,]
+testing <- sales[-inTrain,]
+dim(training); dim(testing)
+
+
+# b) Previsão de venda para cada um dos produtos - demonstrar métricas de qualidade do modelo
+C <- abs(cor(training[,]))
